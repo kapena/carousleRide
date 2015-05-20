@@ -1,0 +1,44 @@
+# jQuery carousel ride
+This project was designed to teach me how to make a jQuery carousel. I will be using a few tools to help me complete this project.
+
+So first off I will explain what sources I have looked at for inspiration and reference. Listed bellow are my sources.
+
+* **jCarousel  - Riding carousels with jQuery**
+
+[jCarousel](http://sorgalla.com/jcarousel/docs/)
+
+jCarousel is really neat! Jan Sorgalla has put together a bunch of really cool carousels for you to use in your projects. I really like the simplicity to his code base and the design of this carousels. I've decided to implement parts of his skeleton carousel as simple base for my carousel. Another really awesome part about his site is that he has a cook book recipe for creating responsive carousels. Def worth checking it out!
+
+* **Stack over flow post**
+[Simple carousel](http://stackoverflow.com/questions/12068734/jquery-simple-image-slideshow-tutorial)
+
+Really simple carousel concept. I will be using part of this post and implementing it into my skeleton of jCarousel.
+
+## Lets get to work
+
+So now that I have shared with you my references I'd like to now specify the steps to creating the carousel.
+
+### The Markup!
+So first we need to create our markup. This is the HTML of course.
+
+### Container div
+
+We need a `div` container for all of our images to sit inside. This container needs to be centered in the middle of the page and have a `width` of what you want the images to be seen at.
+
+### Images go inside the container!
+
+Inside of our container we are going to place the images in an `ul` un-ordered list. Inside the `ul` each image is going to be placed inside of a separate `li` element. So our `img` is going to sit within a `li`.
+
+### Next and Prev buttons!
+
+Now that we have our container and our images in place we need to create prev and next buttons so we can slide through the images.
+
+We can achieve this by adding two links.
+`<a href='#' class='control-prev' data-control-carousle='true'..</a>`
+`<a href='#' class='control-next' data-control-carousle='true'..</a>`
+
+I have decided to place my next and prev buttons on the image.
+
+### Image Count!
+
+Our last step is give the user some info on what image they are currently on. We can achieve this by adding a pagination. 
