@@ -23,11 +23,11 @@ So first we need to create our markup. This is the HTML of course.
 
 ### Container divs
 
-We need a `div` container for all of our images to hangout inside. This container needs to be centered to the middle of the page. So we will give our carousel wrapper `div` a class of `.carousel-wrapper` and right underneath it we will make another `div` wrapper which will be called `carousel` and will contain a `ul` element that contains separate `li` elements which will contain our `img` files.
+We need a `div` container for all of our images to hangout inside. This container needs to be centered to the middle of the page. So we will give our carousel wrapper `div` a class of `viewable-area` and right underneath it we will make another `div` wrapper which will be called `carousel` and will contain a `ul` element that contains separate `li` elements which will contain our `img` files.
 
 ```html
 <!--Containers-->
-<div class="carousel-wrapper">
+<div class="viewable-area">
     <div class="carousle">
         <ul style="left:-1800px; top:0px;">
         <li>
@@ -57,8 +57,8 @@ Now we need to create prev and next buttons so we can slide through the images. 
 We can achieve this by adding two links.
 
 ```html
-<a href="#" class="carousel-control-prev" data-carouselcontrol="true">‹</a>
-<a href="#" class="carousel-control-next" 	data-carouselcontrol="true">›</a>
+<a href="#" class="carousel-control-prev">‹</a>
+<a href="#" class="carousel-control-next">›</a>
 ```
 ### Image Count!
 
@@ -81,7 +81,7 @@ When the user clicks on the number link we will trigger an event which will allo
 
 # Our Base CSS
 
-## div wrapper1
+## Container 1
 
 So our HTML has been set but our page has image placeholders all over the place! Not to worry we can fix this with three blocks of css code.
 
@@ -91,9 +91,9 @@ The first `div` we see is right after the `<body>` tag and its called `wrapper` 
 
 Setting our `wrapper` to `block` makes it a block-level container box. A block-level container box or a block-level box is a box that contains only *block-level boxes or creates an inline formating context which contains only inline boxes*  
 
-Read more on this topic at MDN (Visual formatting model)[https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Visual_formatting_model]
+If you want to learn more on this topic then take a read through [Visual formatting model](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Visual_formatting_model) at MDN
 
-Block-level boxes participate in the [block formating context](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context). This means that each block-level element generates at least one block-level box which is called the *principal block-level box*
+Block-level boxes participate in the[block formating context](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context). This means that each block-level element generates at least one block-level box which is called the *principal block-level box*
 
 ```css
 .wrapper{
@@ -101,13 +101,13 @@ Block-level boxes participate in the [block formating context](https://developer
 }
 ```
 
-## div wrapper 2
+## Container 2
 Our second `div` is our `visual-area` which is what it says it is..the visible area of the carousel.
 
-`position` must be set to `relative`!!
-`overflow` is set to `hidden` because we want to hide all the images from the view
-`margin` is set to `0 auto` to center up our carousel in the middle of the page.
-`width` can be in `px` or in `%`
+* `position` must be set to `relative`
+* `overflow` is set to `hidden` because we want to hide all the images from  the view
+* `margin` is set to `0 auto` to center up our carousel in the middle of the page.
+* `width` can be fixed `px` or flexible `%`
 
 ```css
 .visual-area{
@@ -117,13 +117,15 @@ Our second `div` is our `visual-area` which is what it says it is..the visible a
     width:600px;
 }
 ```
-## div wrapper 3
+## Container 3
 
-Our third `div` container that we need to select is our `.carousle` container. We **Must make sure** that the `position` is either `relative` or `absolute` and that our `width` is long enough to span all of our images.
+Our third `div` container that we need to select is our `.carousle` container. **We must make sure that the `position` is either `relative` or `absolute`** and that our `width` is long enough to span all of our images.
 
-Remember that the `carousle` container contains the `img` attributes inside the `ul` element which contains separate `li` elements? Well it turns out that we need to select the `ul` element within our `carousle`. Why would we want to do that? Let me explain..
+I'm sure that you remember that the `carousle` container contains `li` elements that hold our `img` attributes.
+ So it turns out that we need to select the `ul` element within our `carousle`. Why would we want to do that?
 
-The reason for selecting the the `ul` is because we don't want to have the little bullet dots next to each image and `ul`s come with bullets by default due to there nature of being un-ordered.
+
+The reason for selecting the the `ul` is because we don't want to have the little bullet dots next to each image and `ul` element comes packaged with bullets by default, due to there nature of being un-ordered.
 
 So to get rid of the bullets we need to use the css property of `list-style:none;`  
 
@@ -138,6 +140,8 @@ So to get rid of the bullets we need to use the css property of `list-style:none
 }
 ```
 
-So we have selected the `carousle` class once and we need to now select it again. This is because we need to select it again and this time we need to select it with the `li` element and give it the css property of `float:left;`
+So we have selected the `carousle` class once and we need to now select it again. Why again?!
+
+The reason for selecting our `.carousle` `div` again is because we also need to select our `li` elements and give them the css property of `float:left;`
 
 We are floating left because we want all of our images be hidden on the left inside the container.
