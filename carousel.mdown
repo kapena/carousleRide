@@ -14,31 +14,70 @@ jCarousel is really neat! Jan Sorgalla has put together a bunch of really cool c
 
 Really simple carousel concept. I will be using part of this post and implementing it into my skeleton of jCarousel.
 
-## Lets get to work
+# Lets get to work
 
 So now that I have shared with you my references I'd like to now specify the steps to creating the carousel.
 
 ### The Markup!
 So first we need to create our markup. This is the HTML of course.
 
-### Container div
+### Container divs
 
-We need a `div` container for all of our images to sit inside. This container needs to be centered in the middle of the page and have a `width` of what you want the images to be seen at.
+We need a `div` container for all of our images to hangout inside. This container needs to be centered to the middle of the page. So we will give our carousel wrapper `div` a class of `.carousel-wrapper` and right underneath it we will make another `div` wrapper which will be called `carousel` and will contain a `ul` element that contains separate `li` elements which will contain our `img` files.
+
+```html
+<!--Containers-->
+<div class="carousel-wrapper">
+    <div class="carousle">
+        <ul style="left:-1800px; top:0px;">
+        <li>
+            <img src="http://placehold.it/600x500" alt="">
+        </li>
+        <li>
+            <img src="http://placehold.it/600x500" alt="">
+        </li>
+        <li>
+            <img src="http://placehold.it/600x500" alt="">
+        </li>
+        <li>
+            <img src="http://placehold.it/600x500" alt="">
+        </li>
+        </div>
+    </ul>
+</div>
+```
 
 ### Images go inside the container!
 
-Inside of our container we are going to place the images in an `ul` un-ordered list. Inside the `ul` each image is going to be placed inside of a separate `li` element. So our `img` is going to sit within a `li`.
+So if you look at the markup above you will notice that we have two container divs.
+
+Each container is like the glue that is holding our content together. Inside the `carousel` class we are storing all of our images.
 
 ### Next and Prev buttons!
 
-Now that we have our container and our images in place we need to create prev and next buttons so we can slide through the images.
+Now that we have our containers in place images we need to create prev and next buttons so we can slide through the images. The mark up for this is really minimal.
 
 We can achieve this by adding two links.
-`<a href='#' class='control-prev' data-control-carousle='true'..</a>`
-`<a href='#' class='control-next' data-control-carousle='true'..</a>`
 
-I have decided to place my next and prev buttons on the image.
-
+```html
+<a href="#" class="carousel-control-prev" data-carouselcontrol="true">‹</a>
+<a href="#" class="carousel-control-next" 	data-carouselcontrol="true">›</a>
+```
 ### Image Count!
 
-Our last step is give the user some info on what image they are currently on. We can achieve this by adding a pagination. 
+Our last step is give the user some info on what image they are currently on. We can achieve this by adding a pagination feature.
+
+So for the pagination feature to take place we want to create markup that allows us to have a bunch of numbers to click on.
+
+This markup is again really simple and straight forward. We are wrapping our links inside of a `p` class of `carousel-pagination`.
+
+```html
+<p class="carousel-pagination">
+    <a href="#">1</a>
+    <a href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">4</a>
+</p>
+
+```
+When the user clicks on the number link we will trigger an event which will allow for the picture allocated to that number to be seen.
