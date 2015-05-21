@@ -1,7 +1,7 @@
 .wrapper{
     display:block;
 }
-.carousel-wrapper{
+.visual-area{
     position:relative;
     overflow:hidden;
     margin: 0 auto;
