@@ -62,11 +62,11 @@ We can achieve this by adding two links.
 ```
 ### Image Count!
 
-Our last step is give the user some info on what image they are currently on. We can achieve this by adding a pagination feature.
+Our last step in the markup stage is that we need give the user some info on what image they are currently on. We can achieve this by adding a pagination feature.
 
-So for the pagination feature to take place we want to create markup that allows us to have a bunch of numbers to click on.
+For this to take place we want to create markup that allows us to have a bunch of numbers to click between.
 
-This markup is again really simple and straight forward. We are wrapping our links inside of a `p` class of `carousel-pagination`.
+This markup is really simple and straight forward. We are wrapping our links inside of a `p` class of `carousel-pagination`.
 
 ```html
 <p class="carousel-pagination">
@@ -75,7 +75,6 @@ This markup is again really simple and straight forward. We are wrapping our lin
     <a href="#">3</a>
     <a href="#">4</a>
 </p>
-
 ```
 When the user clicks on the number link we will trigger an event which will allow for the picture allocated to that number to be seen.
 
@@ -83,17 +82,19 @@ When the user clicks on the number link we will trigger an event which will allo
 
 ## Container 1
 
-So our HTML has been set but our page has image placeholders all over the place! Not to worry we can fix this with three blocks of css code.
+So our HTML has been set but if we look at our page it has image placeholders all over the place!
+
+Not to worry we can fix this with three initial blocks of css code.
 
 We should work our way down the HTML file and start styling where we see our first `div` container.
 
-The first `div` we see is right after the `<body>` tag and its called `wrapper` So in our `styles.css` file we want to make our `div class` of `wrapper` be set to `display:block;`
+The first `div` we see is right after the `<body>` tag and its called `wrapper` So in our `styles.css` we want to make our `div class` of `wrapper` be set to `display:block;`
 
-Setting our `wrapper` to `block` makes it a block-level container box. A block-level container box or a block-level box is a box that contains only *block-level boxes or creates an inline formating context which contains only inline boxes*  
+Setting our `wrapper` to `block` makes it a block-level container box. A block-level container box or a block-level box is a box that contains only *block-level boxes or creates an inline formatting context which contains only inline boxes*  
 
 If you want to learn more on this topic then take a read through [Visual formatting model](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Visual_formatting_model) at MDN
 
-Block-level boxes participate in the[block formating context](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context). This means that each block-level element generates at least one block-level box which is called the *principal block-level box*
+Block-level boxes participate in the[block formatting context](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context). This means that each block-level element generates at least one block-level box which is called the *principal block-level box*
 
 ```css
 .wrapper{
@@ -119,16 +120,20 @@ Our second `div` is our `visual-area` which is what it says it is..the visible a
 ```
 ## Container 3
 
-Our third `div` container that we need to select is our `.carousle` container. **We must make sure that the `position` is either `relative` or `absolute`** and that our `width` is long enough to span all of our images.
+Our third `div` that we need to select is `.carousle`
 
-I'm sure that you remember that the `carousle` container contains `li` elements that hold our `img` attributes.
- So it turns out that we need to select the `ul` element within our `carousle`. Why would we want to do that?
+* `position` must be either `relative` or `absolute`
+
+* `width` must be long enough to hold all of our images.
+
+I'm sure that you remember that the `carousle` contains `li` elements that hold our `img` attributes and it turns out that we need to select the `ul` element within our `carousle`. Why would we want to do that?
 
 
-The reason for selecting the the `ul` is because we don't want to have the little bullet dots next to each image and `ul` element comes packaged with bullets by default, due to there nature of being un-ordered.
+The reason for selecting the the `ul` is because we don't want to have little bullets next to each images.
 
-So to get rid of the bullets we need to use the css property of `list-style:none;`  
+`ul` elements come packaged with bullets by default, due to there nature of being un-ordered.
 
+So to get rid of the bullets we need to use the css property of `list-style:none;`
 
 ```css
 .carousle ul {
@@ -142,6 +147,40 @@ So to get rid of the bullets we need to use the css property of `list-style:none
 
 So we have selected the `carousle` class once and we need to now select it again. Why again?!
 
-The reason for selecting our `.carousle` `div` again is because we also need to select our `li` elements and give them the css property of `float:left;`
+The reason for selecting our `.carousle` `div` for the second time is because we need to select our `li` elements and give them the css property of `float:left;`
 
 We are floating left because we want all of our images be hidden on the left inside the container.
+
+# jQuery Functionality
+
+Using jQuery is going to enable our carousel to slide back and forth when a user clicks on the buttons.
+
+## Set the variables
+
+So to start out we want to set a variable which is going to hold the transition speed between our images as we change them out.
+
+```javascript
+var transitionSpeed = 3000;
+```
+The next two variables that we want to set are going to query the DOM. The first variable is going to fetch the images.
+
+In our first variable we are targeting the `ul` element and then querying using the `children` method to search out the `li` elements.
+
+In our second variable we are targeting the class of `.carousel-pagination` and then using the children method find links `a`.
+
+```javascript
+// fetching the images
+var listItems = $('ul').children('li');
+// fetching the links to each image (pagination)
+var pagination = $('.carousel-pagination').children('a');
+```
+Now we have two variables in place that are going to find our items in the DOM. The next step is to set up two more variables that are going to allow our program to search though each individual image in an automated manner.
+
+Our new variable named `listLength` is going to access the `length` property on our `listItems`. This allows the program to know how many images we have.
+
+The last variable that we want to set is going to be the current position setter. This enables us to start counting through each image starting at the number `0`. So to do that we create a variable named currentPosition and give it the value of `0`.
+
+```javascript
+var listLength = listItems.length;
+var currentPosition = 0;
+```
