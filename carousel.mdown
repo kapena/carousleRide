@@ -25,7 +25,7 @@ So first we need to create our markup. This is the HTML of course.
 
 We need a `div` container for all of our images to hangout inside. This container needs to be centered to the middle of the page. So we will give our carousel wrapper `div` a class of `viewable-area` and right underneath it we will make another `div` wrapper which will be called `carousel` and will contain a `ul` element that contains separate `li` elements which will contain our `img` files.
 
-```html
+```*.html
 <!--Containers-->
 <div class="viewable-area">
     <div class="carousle">
@@ -56,7 +56,7 @@ Now we need to create prev and next buttons so we can slide through the images. 
 
 We can achieve this by adding two links.
 
-```html
+```*.html
 <a href="#" class="carousel-control-prev">‹</a>
 <a href="#" class="carousel-control-next">›</a>
 ```
@@ -68,7 +68,7 @@ For this to take place we want to create markup that allows us to have a bunch o
 
 This markup is really simple and straight forward. We are wrapping our links inside of a `p` class of `carousel-pagination`.
 
-```html
+```*.html
 <p class="carousel-pagination">
     <a href="#">1</a>
     <a href="#">2</a>
@@ -144,7 +144,6 @@ So to get rid of the bullets we need to use the css property of `list-style:none
     padding:0;
 }
 ```
-
 So we have selected the `carousle` class once and we need to now select it again. Why again?!
 
 The reason for selecting our `.carousle` `div` for the second time is because we need to select our `li` elements and give them the css property of `float:left;`
@@ -184,3 +183,4 @@ The last variable that we want to set is going to be the current position setter
 var listLength = listItems.length;
 var currentPosition = 0;
 ```
+## Function time!
