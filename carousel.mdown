@@ -26,23 +26,24 @@ So first we need to create our markup. This is the HTML of course.
 We need a `div` container for all of our images to hangout inside. This container needs to be centered to the middle of the page. So we will give our carousel wrapper `div` a class of `viewable-area` and right underneath it we will make another `div` wrapper which will be called `carousel` and will contain a `ul` element that contains separate `li` elements which will contain our `img` files.
 
 ```*.html
-<!--Containers-->
-<div class="viewable-area">
+<div class="wrapper">
+<!--Container-->
+<div class="visual-area">
     <div class="carousle">
-        <ul style="left:-1800px; top:0px;">
-        <li>
-            <img src="http://placehold.it/600x500" alt="">
+    <ul>
+        <li class="off image_0" data-image="0">
+            <img src="http://placehold.it/600x500">
         </li>
-        <li>
-            <img src="http://placehold.it/600x500" alt="">
+        <li class="off image_1" data-image="1">
+            <img src="http://placehold.it/600x500">
         </li>
-        <li>
-            <img src="http://placehold.it/600x500" alt="">
+        <li class="off image_2" data-image="2">
+            <img src="http://placehold.it/600x500">
         </li>
-        <li>
-            <img src="http://placehold.it/600x500" alt="">
+        <li class="off image_3" data-image="3">
+            <img src="http://placehold.it/600x500">
         </li>
-        </div>
+    </div>
     </ul>
 </div>
 ```
@@ -56,10 +57,12 @@ Now we need to create prev and next buttons so we can slide through the images. 
 
 We can achieve this by adding two links.
 
-```*.html
-<a href="#" class="carousel-control-prev">‹</a>
-<a href="#" class="carousel-control-next">›</a>
+```HTML
+<!--Prev & Next-->
+<a href="#" class="next">Prev</a>
+<a href="#" class="prev">Next</a>
 ```
+
 ### Image Count!
 
 Our last step in the markup stage is that we need give the user some info on what image they are currently on. We can achieve this by adding a pagination feature.
@@ -68,7 +71,7 @@ For this to take place we want to create markup that allows us to have a bunch o
 
 This markup is really simple and straight forward. We are wrapping our links inside of a `p` class of `carousel-pagination`.
 
-```*.html
+```HTML
 <p class="carousel-pagination">
     <a href="#">1</a>
     <a href="#">2</a>
@@ -103,7 +106,7 @@ Block-level boxes participate in the[block formatting context](https://developer
 ```
 
 ## Container 2
-Our second `div` is our `visual-area` which is what it says it is..the visible area of the carousel.
+Our second `div` is our `visual-area` which is the visual-area of are carousel
 
 * `position` must be set to `relative`
 * `overflow` is set to `hidden` because we want to hide all the images from  the view
@@ -150,37 +153,58 @@ The reason for selecting our `.carousle` `div` for the second time is because we
 
 We are floating left because we want all of our images be hidden on the left inside the container.
 
-# jQuery Functionality
+# jQuery Functionality Fun!
 
-Using jQuery is going to enable our carousel to slide back and forth when a user clicks on the buttons.
+Using jQuery is going to enable our carousel to slide back and forth when a user clicks on the **Next** and **Prev** buttons!
 
-## Set the variables
-
-So to start out we want to set a variable which is going to hold the transition speed between our images as we change them out.
-
-```javascript
-var transitionSpeed = 3000;
-```
-The next two variables that we want to set are going to query the DOM. The first variable is going to fetch the images.
-
-In our first variable we are targeting the `ul` element and then querying using the `children` method to search out the `li` elements.
-
-In our second variable we are targeting the class of `.carousel-pagination` and then using the children method find links `a`.
+## Document Ready!
+We need to get our Document ready!
 
 ```javascript
-// fetching the images
-var listItems = $('ul').children('li');
-// fetching the links to each image (pagination)
-var pagination = $('.carousel-pagination').children('a');
+$(document).ready(function(){
+// set event
+});
 ```
-Now we have two variables in place that are going to find our items in the DOM. The next step is to set up two more variables that are going to allow our program to search though each individual image in an automated manner.
 
-Our new variable named `listLength` is going to access the `length` property on our `listItems`. This allows the program to know how many images we have.
-
-The last variable that we want to set is going to be the current position setter. This enables us to start counting through each image starting at the number `0`. So to do that we create a variable named currentPosition and give it the value of `0`.
+# Event
+To start out we need to set up a event handler on our `next` link. We want our event to occur when the user clicks on the next link.
 
 ```javascript
-var listLength = listItems.length;
-var currentPosition = 0;
+$(document).ready(function(){
+// set the event
+$('.next').on('click',function () {
+    // iterate the DOM
+    });
+});
 ```
-## Function time!
+
+# Iterating the DOM
+Once our event has been set then we need to create a loop. The loop is going to be done with the `each(function())` method.
+
+**Looping explained**
+
+## Each method
+So how dose the `each()` method work? `each()` makes DOM looping concise.
+When `each()` is called upon it iterates over DOM elements that are apart of the jQuery object. Every time the callback runs, it is passed the current loop iteration, beginning from `0`.
+
+## The Callback
+The callback in the each method is fired in the context of the current DOM element so the keyword `this` refers to the element.
+
+## Loop
+We want the `each()` method to iterate over all of our images. To accomplish this task we first giving our `each()` method some parameters. The first parameter is going to be the `index` which is going to start at `0`  then the second parameter is going to be `element` which is referencing our current DOM element.
+
+**NOTE**
+In this case we are using `element` as our parameter to find the current DOM element. If you wish you could do away with the`element` keyword and instead use the`this` keyword in our `if` statement to reference our current DOM element.
+
+```javascript
+$(document).ready(function(){
+    // setting an event handler on the `next` link
+    $('.next').on('click',function(){
+    // intreating through `ul` and `li` elements with the each method
+    // `>` selects the direct descendant elements
+    $('ul > li').each(function(index,element){
+        //  set if else statement
+        });
+    });
+});
+```
