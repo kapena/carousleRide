@@ -1,4 +1,4 @@
-# jQuery carousel ride
+# The jQuery Slide Ride
 This project was designed to teach me how to make a jQuery carousel. I will be using a few tools to help me complete this project.
 
 So first off I will explain what sources I have looked at for inspiration and reference. Listed bellow are my sources.
@@ -181,8 +181,6 @@ $('.next').on('click',function () {
 # Iterating the DOM
 Once our event has been set then we need to create a loop. The loop is going to be done with the `each(function())` method.
 
-**Looping explained**
-
 ## Each method
 So how dose the `each()` method work? `each()` makes DOM looping concise.
 When `each()` is called upon it iterates over DOM elements that are apart of the jQuery object. Every time the callback runs, it is passed the current loop iteration, beginning from `0`.
@@ -190,11 +188,36 @@ When `each()` is called upon it iterates over DOM elements that are apart of the
 ## The Callback
 The callback in the each method is fired in the context of the current DOM element so the keyword `this` refers to the element.
 
-## Loop
+### Example
+A simple un-ordered list
+
+```HTML
+<ul>
+  <li>foo</li>
+  <li>bar</li>
+</ul>
+```
+With the `each()` method you can selects the elements and iterate over them like so
+
+```javascript
+$('li').each(function(index){
+    // iterating over each `li` element
+    alert($( index + ": " + $( this ).text() );
+});
+```
+Notice how we are using `index` as the counter and this as the reference to the element.
+
+Our result will alert us the following
+
+0: foo
+1: bar
+
+## One For Each Image
 We want the `each()` method to iterate over all of our images. To accomplish this task we first giving our `each()` method some parameters. The first parameter is going to be the `index` which is going to start at `0`  then the second parameter is going to be `element` which is referencing our current DOM element.
 
 **NOTE**
-In this case we are using `element` as our parameter to find the current DOM element. If you wish you could do away with the`element` keyword and instead use the`this` keyword in our `if` statement to reference our current DOM element.
+
+In this case we are using `element` as our parameter to find the current DOM element. If you wish you could do away with the`element` keyword and instead use the`this` keyword in our `if` statement to reference our current DOM `element`.
 
 ```javascript
 $(document).ready(function(){
@@ -207,4 +230,63 @@ $(document).ready(function(){
         });
     });
 });
+```
+# Logic!
+Now we need to work in some logic into our code. Without the logic our images won't be able to interchange!
+
+So lets set up a user case to understand how our `if else` statement needs to be formatted.
+
+## First if statement
+
+### conditions
+
+`if` `element` has a class of `on` and evaluates to `true` then run a statement.
+
+### Statement
+
+The statement must find our `element` and then access the `data-image` attribute attached to our images.
+
+**NOTE**
+
+Our first statement inside of the first `if` statement is going to need a variable name. Remember that we are going to iterate through each image's `data-image` attribute and these attributes are numbers! Check the `img` tags in the HTML to see what I mean.
+
+So in knowing that it would be wise to use a variable name that represents a number.
+
+## Second if statement
+
+## Conditions
+The first thing we need to do is in our second`if` statement is access the `image_` class. Then in the first condition we want to check if the number of arguments we are receiving is greater that `0`
+
+In the second condition we want to check if `image_ + (number + 1)` is true. If both our conditions evaluate to `true` then our `if` statement will execute the statement.
+
+## Statement 
+
+```javascript
+$(document).ready(function() {
+    // click event
+    $('.next').on('click',function() {
+        // each method
+        $('ul > li').each(function (index, element) {
+            // first if statement
+            //  if `element` hasClass('on') is `true`
+            if ($('element').hasClass('on')){
+                // then use `element` to access
+                // the number in the data-image attribute
+                number = $('element').data('image');
+            }
+            // second if statement
+            // first condition
+            // if number of arguments is greater than 0 is`true`
+            // second condition
+            // if `image_` + (number + 1) is `true`
+            if ($('image_' + (number + 1)).length > 0) {
+                // then `next` is assigned to `number`
+                // add number by `1` each time we iterate
+                next = number + 1;
+            }
+            // else
+        });
+    });
+});
+
 ```
