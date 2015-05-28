@@ -244,20 +244,20 @@ Now we need to work in some logic into our code. Without the logic our images wo
 
 The statement must find our `element` and then access the `data-image` attribute attached to our images.
 
-**NOTE**
+**Hint**
 
-Our first statement inside of the first `if` statement is going to need a variable name. Remember that we are going to iterate through each image's `data-image` attribute and these attributes are numbers! Check the `img` tags in the HTML to see what I mean.
+Our first statement inside of the first `if` is going to need a variable name. Remember that we are going to iterate through each image's `data-image` attribute and these attributes are numbers!
 
-So in knowing that it would be wise to use a variable name that represents a number.
+It would be wise to use a variable name that represents a number. We can set the variable name as a parameter in our `each()` method.
 
 ## Second if statement
 
-## Conditions
+### Conditions
 The first thing we need to do is in our second`if` statement is access the `image_` class. Then in the first condition we want to check if the number of arguments we are receiving is greater that `0`
 
 In the second condition we want to check if `image_ + (number + 1)` is true. If both our conditions evaluate to `true` then our `if` statement will execute the statement.
 
-## Statement
+### Statement
 Coming soon
 
 ```javascript
@@ -265,7 +265,7 @@ $(document).ready(function() {
     // click event
     $('.next').on('click',function() {
         // each method
-        $('ul > li').each(function (index, element) {
+        $('ul > li').each(function (index, element, number) {
             // first if statement
             //  if `element` hasClass('on') is `true`
             if ($('element').hasClass('on')){
