@@ -232,7 +232,7 @@ $(document).ready(function(){
 });
 ```
 # Logic!
-Now we need to work in some logic into our code. Without the logic our images won't be able to interchange!
+Now we need to apply some logic into our code. Without the logic our images won't be able to interchange!
 
 ## First if statement
 
@@ -253,12 +253,15 @@ It would be wise to use a variable name that represents a number. We can set the
 ## Second if statement
 
 ### Conditions
-The first thing we need to do is in our second`if` statement is access the `image_` class. Then in the first condition we want to check if the number of arguments we are receiving is greater that `0`
+The first thing we need to do is in our second `if` statement is access the `image_` class. In the first condition we want to check the number of arguments `each()` method is receiving is greater that `0` which will evaluate to a boolean (true or false).
 
-In the second condition we want to check if `image_ + (number + 1)` is true. If both our conditions evaluate to `true` then our `if` statement will execute the statement.
+In the second condition we want to check if `image_ + (number + 1)` is `true`. If both our conditions evaluate to `true` then our `if` statement will execute the statement within.
 
 ### Statement
-Coming soon
+The statement in our second `if` is going to assign the class of `next` to the variable `number` and add `number` by `1` each time the loop iterates.
+
+### Else
+If our `if` statements where to fail then we need  statement that will be executed in place of them. This is where we use the `else` statement. Inside our `else` statement we want to execute the following, `next` is assigned to `0`
 
 ```javascript
 $(document).ready(function() {
@@ -267,15 +270,14 @@ $(document).ready(function() {
         // each method
         $('ul > li').each(function (index, element, number) {
             // first if statement
-            //  if `element` hasClass('on') is `true`
-            if ($('element').hasClass('on')){
-                // then use `element` to access
-                // the number in the data-image attribute
-                number = $('element').data('image');
+            //  if `element` hasClass('on') is `true` then use
+            if ($('element').hasClass('on')) {
+                // the number variable to access the `element` in the data-image attribute
+                number = $('element').data('image')
             }
             // second if statement
             // first condition
-            // if number of arguments is greater than 0 is`true`
+            // if the number of arguments is greater than 0 is`true`
             // second condition
             // if `image_` + (number + 1) is `true`
             if ($('image_' + (number + 1)).length > 0) {
@@ -284,8 +286,22 @@ $(document).ready(function() {
                 next = number + 1;
             }
             // else
+            else {
+                // next is assigned to 0
+                next = 0;
+            }
         });
     });
 });
 
 ```
+# Take a breather!
+The logic part in our code is by far the most tricky. I struggled to figure out how this worked. Seriously take your time to digest this. It's not easy stuff.
+
+The best thing you can do is to be proud of your self to spending time on something that is difficult. You are going to get this..It's just a matter of time :)
+
+During my breather I took a few minutes to design a simple illustration on how our logic above is working. Take a look!
+
+![Alt Text](http://s10.postimg.org/ip9mxkzm1/Understanding_Logic.jpg)
+
+# Promises
