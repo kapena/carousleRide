@@ -212,7 +212,7 @@ Our result will alert us the following
 0: foo
 1: bar
 
-## One For Each Image
+## Each Image
 We want the `each()` method to iterate over all of our images. To accomplish this task we first giving our `each()` method some parameters. The first parameter is going to be the `index` which is going to start at `0`  then the second parameter is going to be `element` which is referencing our current DOM element.
 
 **NOTE**
@@ -234,11 +234,9 @@ $(document).ready(function(){
 # Logic!
 Now we need to work in some logic into our code. Without the logic our images won't be able to interchange!
 
-So lets set up a user case to understand how our `if else` statement needs to be formatted.
-
 ## First if statement
 
-### conditions
+### Condition
 
 `if` `element` has a class of `on` and evaluates to `true` then run a statement.
 
@@ -259,7 +257,8 @@ The first thing we need to do is in our second`if` statement is access the `imag
 
 In the second condition we want to check if `image_ + (number + 1)` is true. If both our conditions evaluate to `true` then our `if` statement will execute the statement.
 
-## Statement 
+## Statement
+Coming soon
 
 ```javascript
 $(document).ready(function() {
