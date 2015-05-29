@@ -261,7 +261,7 @@ In the second condition we want to check if `image_ + (number + 1)` is `true`. I
 The statement in our second `if` is going to assign the class of `next` to the variable `number` and add `number` by `1` each time the loop iterates.
 
 ### Else
-If our `if` statements where to fail then we need  statement that will be executed in place of them. This is where we use the `else` statement. Inside our `else` statement we want to execute the following, `next` is assigned to `0`
+If our `if` statements where to fail then we need  statement that will be executed in place of them failing. This is where we use the `else` statement. Inside our `else` statement we want to execute the following, `next` is assigned to `0`
 
 ```javascript
 $(document).ready(function() {
@@ -298,10 +298,10 @@ $(document).ready(function() {
 # Take a breather!
 The logic part in our code is by far the most tricky. I struggled to figure out how this worked. Seriously take your time to digest this. It's not easy stuff.
 
-The best thing you can do is to be proud of your self to spending time on something that is difficult. You are going to get this..It's just a matter of time :)
+Be proud of your self for spending time on something that is difficult. You are going to get this..It's just a matter of time :)
 
-During my breather I took a few minutes to design a simple illustration on how our logic above is working. Take a look!
+During my breather I took a few minutes to design a simple illustration on how code logic above is working. Take a look!
 
-![Alt Text](http://s10.postimg.org/ip9mxkzm1/Understanding_Logic.jpg)
+![Alt Text](http://s21.postimg.org/fw2wzl6on/Understanding_Logic.jpg)
 
-# Promises
+# Promises are't they nice!
