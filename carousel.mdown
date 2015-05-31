@@ -304,4 +304,46 @@ During my breather I took a few minutes to design a simple illustration on how c
 
 ![Alt Text](http://s21.postimg.org/fw2wzl6on/Understanding_Logic.jpg)
 
+# Understanding Asynchronous and Synchronous
+I think it's highly use full for us to understand how asynchronous and synchronous execution work. If we grasp this idea then the next section of code will be much easier to understand. So I have gone into some detail to explain how
+
+## Asynchronous def
+An Asynchronous operation means that a process operates independently of other processes.
+
+## Asynchronous execution
+> When you execute something asynchronously you can move onto another task before it finishes.
+
+Here is a visual representation I created of what an asynchronous execution looks like.
+
+* `A` says, I'll go work in the background so we can move onto `B`
+
+* `B` then begins and says, I'll also go work in the background so we can move onto `C` this pattern keeps going onward till we reach our last letter.  
+
+![](https://s3-us-west-2.amazonaws.com/designdiagrams/any1.JPG)
+
+Whats really cool about this is that we can put `A` and `B` to use  while `C` and `D` are still working in the background. We don't need to wait for the entire process to finish.
+
+![](https://s3-us-west-2.amazonaws.com/designdiagrams/any2.JPG)
+
+## Synchronous def
+A Synchronous operation means that the process runs only as a result of the other processes being executed.
+
+## Synchronous execution
+> When you execute something synchronously you wait for it to finish before moving to the next task.
+
+Here is a visual representation of how a synchronous execution works.
+
+![](https://s3-us-west-2.amazonaws.com/designdiagrams/sny1.JPG)
+
+
+`A`,`B`,`C` and `D` all happen in a single series.
+
+`A` will run then finish then `B` will run then finish and so on until the cycle is finished. With synchronous execution we haft to wait for the entire process to finish.
+
+![](https://s3-us-west-2.amazonaws.com/designdiagrams/sny2.JPG)
+
+# Deferreds
+
 # Promises are't they nice!
+A promise represents a value that may not be available yet.
+Promises work with jQuery specific listeners which are `done()` and `fail()`
