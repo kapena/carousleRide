@@ -235,7 +235,15 @@ $(document).ready(function(){
 Now we need to apply some logic into our code. Without the logic our images won't be able to interchange!
 
 ## First if statement
-
+The first `if` statement is going to enclose our second `if` statement like so
+```javascript
+if(expression) {
+    // Statement
+    if (expression){
+            // Statement
+    }
+}
+```
 ### Condition
 
 `if` `element` has a class of `on` and evaluates to `true` then run a statement.
@@ -264,36 +272,39 @@ The statement in our second `if` is going to assign the class of `next` to the v
 If our `if` statements where to fail then we need  statement that will be executed in place of them failing. This is where we use the `else` statement. Inside our `else` statement we want to execute the following, `next` is assigned to `0`
 
 ```javascript
-$(document).ready(function() {
-    // click event
-    $('.next').on('click',function() {
-        // each method
+$(document).ready(function(){
+    // click function which will execute next link
+    $('.next').on('click',function(){
+        // selecting `ul` elements and there direct descendants `li`
+        //  using the each method to iterate over DOM
         $('ul > li').each(function (index, element, number) {
-            // first if statement
-            //  if `element` hasClass('on') is `true` then use
+            //  if `element` hasClass('on') then use
             if ($('element').hasClass('on')) {
                 // the number variable to access the `element` in the data-image attribute
-                number = $('element').data('image')
-            }
-            // second if statement
+                number = $('element').data('image');
             // first condition
-            // if the number of arguments is greater than 0 is`true`
+            // if number of arguments is greater than 0 is`true`
             // second condition
-            // if `image_` + (number + 1) is `true`
-            if ($('image_' + (number + 1)).length > 0) {
-                // then `next` is assigned to `number`
+            // if `image_` + (number + 1) is `true` then
+            if ($('image_' + (number + 1).length > 0)){
+                // next is assigned to number
                 // add number by `1` each time we iterate
                 next = number + 1;
             }
-            // else
-            else {
-                // next is assigned to 0
-                next = 0;
+            // if false then next is 0
+                else {
+                    next = 0;
+                }
             }
+        // promise
+        }).promise().done(function(){
+            // removing `carousle > ul > li` from css
+            $('.carousle > ul > li').removeClass('off').addClass('on');
+            // moving to next image each time next is clicked
+            $('li. image_' + next).removeClass('off').addClass('on');
         });
     });
 });
-
 ```
 # Take a breather!
 The logic part in our code is by far the most tricky. I struggled to figure out how this worked. Seriously take your time to digest this. It's not easy stuff.
@@ -323,7 +334,7 @@ Here is a visual representation I created of what an asynchronous execution look
 
 Whats really cool about this is that we can put `A` and `B` to use  while `C` and `D` are still working in the background. We don't need to wait for the entire process to finish.
 
-![](https://s3-us-west-2.amazonaws.com/designdiagrams/any2.JPG)
+![](https://s3-us-west-2.amazonaws.com/designdiagrams/asy2.JPG)
 
 ## Synchronous def
 A Synchronous operation means that the process runs only as a result of the other processes being executed.
@@ -342,8 +353,132 @@ Here is a visual representation of how a synchronous execution works.
 
 ![](https://s3-us-west-2.amazonaws.com/designdiagrams/sny2.JPG)
 
-# Deferreds
+## Deferreds
+At a high-level, deferreds can be thought of as a way to represent asynchronous operations which can take a long time to complete. They're the asynchronous alternative to blocking functions and the general idea is that rather than your application blocking while it awaits some request to complete before returning a result, a deferred object can instead be returned immediately. You can then attach callbacks to the deferred object: they will be called once the request has actually completed.
 
-# Promises are't they nice!
+[Deferreds](https://learn.jquery.com/code-organization/deferreds/)
+
+So deferrends can be returned immediately vs having to wait for a asynchronous function.
+
+## Promises are't they nice!
 A promise represents a value that may not be available yet.
 Promises work with jQuery specific listeners which are `done()` and `fail()`
+
+In its most basic form, a "promise" is a model that provides a solution for the concept of deferred (or future) results in software engineering. The main idea behind it:
+
+> Rather than executing a call which may result in blocking, we instead return a promise for a future value that will eventually be satisfied.
+
+A promise can end up being in two different states:
+
+* Resolved: Data is available
+* Rejected: Something went wrong and no value is available.
+
+[More on promises](https://learn.jquery.com/code-organization/deferreds/)
+
+# jQuery documentation on .promise()
+
+`.promise( [type ] [, target ] )`
+
+The promise method returns a dynamically generated promise that is resolved when all actions of a certain type bound to the collection, queued or not, have ended.
+
+By default, `type` is `"fx"`, which means *the returned Promise is resolved when all animations of the selected elements have completed*.
+
+Resolve context and sole argument is the collection onto which `.promise()` has been called.
+
+If `target` is provided, `.promise()` will attach the methods onto it and then return this object rather than create a new one. This can be useful to attach the Promise behavior to an object that already exists.
+
+**Note: The returned Promise is linked to a Deferred object stored on the `.data()` for an element.**
+
+## jQuery documentation on .done()
+The `deferred.done()` method accepts one or more arguments, all of which can be either a single function or an array of functions.
+
+When the Deferred is resolved, the doneCallbacks are called.
+
+# Adding the Promise  
+We need to add a `promise()` right after our enclosing `if` statement. What is the promise doing? The promise is going to be representing the future value of our animation that we have not received yet.
+
+# Done function
+Once we have added our `promise()` we then need to add the the `done()` method. which accept a parameter as a function.
+
+`done(function(){
+    // do something
+    });`
+
+```javascript
+$(document).ready(function(){
+    // event
+    $('next').on('click',function(){
+        // loop
+        $('ul > li').each(function(element, index, number)
+        // logic
+        if ($('element').hasClass('on')){
+            number = $('element').data('image');
+
+        if ($('image_' + (number + 1)).length > 0){
+            next = number + 1;
+        }
+        else {
+            next = 0;
+        }
+    }  
+    // promise
+}).promise().done(function(){
+
+});
+
+});
+
+```
+## Removing from the CSS
+Now that we have our `promise()` and `done()` methods in place we need to do something with them. So what do we want to do with them? We first want to go find the following `carousle > ul > li` and then use the `addClass` and `removeClass` methods to effectively add and remove these elements as a class to the CSS.
+
+```javascript
+ $('carousle > ul > li').removeClass('on').addClass('off');
+```
+
+What this is doing is removing the class of `carousle > ul > li` from the CSS while also making sure that it is not being added.  
+
+## Adding to the CSS
+We need to now add a class to the CSS of `li.'image_' + next`  
+```javascript
+$('li. image_' + next).removeClass('off').addClass('on');
+```
+This is now adding a new image each time we click on the next link.
+
+## Code 
+
+```javascript
+$(document).ready(function(){
+    // click function which will exicute next link
+    $('.next').on('click',function(){
+        // selecting `ul` elements and there direct descendants `li`
+        //  using the each method to interate over DOM
+        $('ul > li').each(function (index, element, number) {
+            //  if `element` hasClass('on') then use
+            if ($('element').hasClass('on')) {
+                // the number variable to access the `element` in the data-image attribute
+                number = $('element').data('image');
+            // first condition
+            // if number of arguments is greater than 0 is`true`
+            // second condition
+            // if `image_` + (number + 1) is `true` then
+            if ($('image_' + (number + 1).length > 0)){
+                // next is assigned to number
+                // add number by `1` each time we iterate
+                next = number + 1;
+            }
+            // if false then next is 0
+                else {
+                    next = 0;
+                }
+            }
+        // promise
+        }).promise().done(function(){
+            // removing `carousle > ul > li` from css
+            $('.carousle > ul > li').removeClass('off').addClass('on');
+            // moving to next image each time next is clicked
+            $('li. image_' + next).removeClass('off').addClass('on');
+        });
+    });
+});
+```
