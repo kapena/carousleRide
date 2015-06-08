@@ -2,21 +2,40 @@
     display:block;
 }
 .visual-area{
-    position:relative;
-    overflow:hidden;
     margin: 0 auto;
     width:600px;
 }
 
-.carousle ul {
-    width: 20000em;
+.carousel ul {
+    list-style-type: none;
     position: relative;
-    list-style:none;
     margin:0;
     padding:0;
 }
 
 /* Required for `li` */
-.carousle li {
+.carousel > ul > li {
+    position: absolute;
+    top: 20px;
+    bottom: 20px;
     float: left;
+}
+
+.carousel > ul > li.off {
+   opacity: 0;
+   transition: opacity 0.2s linear;
+   -web-kit-transition: opacity 0.2s linear;
+}
+
+.carousel > ul > li.on {
+    opacity: 1;
+    transition: opacity 0.2s linear;
+    -web-kit-transition:opacity 0.2s linear;
+}
+
+.next{
+    display: inline-block;
+    top: 250px;
+    left: 500px;
+    position: relative;
 }
