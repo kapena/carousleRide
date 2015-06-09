@@ -1,32 +1,23 @@
-# The jQuery Slide Ride
-This project was designed to teach me how to make a jQuery carousel. I will be using a few tools to help me complete this project.
+# The jQuery Cycle Ride
+This project was designed to teach me how to make a jQuery image slider.
 
-So first off I will explain what sources I have looked at for inspiration and reference. Listed bellow are my sources.
+Initially I was going to make something on the lines of this [Simple carousel](http://stackoverflow.com/questions/12068734/jquery-simple-image-slideshow-tutorial) but I got tied up with the code I decided to go at it differently.
 
-* **jCarousel  - Riding carousels with jQuery**
-
-[jCarousel](http://sorgalla.com/jcarousel/docs/)
-
-jCarousel is really neat! Jan Sorgalla has put together a bunch of really cool carousels for you to use in your projects. I really like the simplicity to his code base and the design of this carousels.
-
-* **Stack over flow post**
-[Simple carousel](http://stackoverflow.com/questions/12068734/jquery-simple-image-slideshow-tutorial)
-
+Like most things when you start out for the first time you run I into a few issues, things not working like they should while struggling to understand what the heck is wrong with your code..I'm sure you know the feeling.
+So in feeling a little lost I decided to write a stack over flow question regarding the my issue and I was able to resolve the problem! However I still felt like something was not right..So I went to irc jQuery and asked around on how I should write up this script. Someone really nice there showed me a concept that really inspired me. I crafted these notes to teach me how to implement the concept that was shown to me. Feel free to follow along and learn from my process.  
 
 # Lets get to work
 
-So now that I have shared with you my references I'd like to now specify the steps to creating the carousel.
-
 ### The Markup!
-So first we need to create our markup. This is the HTML of course.
+So first we need to create our markup.
 
 ### Container divs
 
-We need a `div` container for all of our images to stay inside. This container needs to be centered to the middle of the page. So we will give our carousel wrapper `div` a class of `viewable-area` and right underneath it we will make another `div` wrapper which will be called `carousel` and will contain a `ul` element that contains separate `li` elements which will contain our `img` files.
+We need three `div` containers. The first `div` container is going to be our
+`wrapper` which is going to contain the next two divs. The next `div` we want to add is going to be our `visual-area` this is where all the things visual will be presented. The last `div` is going to be called `carousel` which is going to contain all of our images inside of an `ul` un-ordered list.
 
 ```*.html
 <div class="wrapper">
-<!--Container-->
 <div class="visual-area">
     <div class="carousel">
     <ul>
@@ -46,13 +37,14 @@ We need a `div` container for all of our images to stay inside. This container n
     </ul>
 </div>
 ```
-### Images go inside the container!
 
-So if you look at the markup above you will notice that we have two container divs. Each container is like the glue that is holding all of our content together.
+## Classes
+Our `li` elements that contain each of the images need to have classes. This is so we can find them when we use jQuery later. We specifying each `li` with a class of `off` for the images that we don't see and we specify the class of `on` for the first image that will see when we first start the carousel. Each `li`  also has a `data` attribute. The data attribute is going to contain the image numbers. So in this case we have 4 images but we are indexing from `0` so we actually have `3` images as far as javascript is concerned.
+
 
 ### Next and Prev buttons!
 
-Now we need to create prev and next buttons so we can slide through the images. The mark up for this is really minimal.
+We need to create prev and next buttons so we can slide through the images. The mark up for this is really minimal.
 
 We can achieve this by adding two links.
 
@@ -105,7 +97,7 @@ Block-level boxes participate in the[block formatting context](https://developer
 ```
 
 ## Container 2
-Our second `div` is our `visual-area` which is the visual-area of are carousel
+Our second `div` is our `visual-area` which is the visual-area of the carousel
 
 * `position` must be set to `relative`
 * `margin` is set to `0 auto` to center up our carousel in the middle of the page.
@@ -120,15 +112,13 @@ Our second `div` is our `visual-area` which is the visual-area of are carousel
 
 Our third `div` that we need to select is `.carousle`
 
-* `position` must be either `relative` or `absolute`
+* `position` is `relative`
 
 * `width` must be long enough to hold all of our images.
 
-I'm sure that you remember that the `carousle` contains `li` elements that hold our `img` attributes and it turns out that we need to select the `ul` element within our `carousle`. Why would we want to do that?
+I'm sure that you remember that the `carousle` contains `li` elements that hold our `img` attributes.
 
-The reason for selecting the the `ul` is because we don't want to have little bullets next to each images.
-
-So to get rid of the bullets we need to use the css property of `list-style-type:none`
+So it turns out that we need to select the `ul` element within our `carousle`. Why would we want to do that? The reason for selecting the the `ul` is because we don't want to have little bullets next to each images. To get rid of the bullets we need to use the css property of `list-style-type:none`
 
 ```css
 .carousle ul {
@@ -140,7 +130,7 @@ So to get rid of the bullets we need to use the css property of `list-style-type
 ```
 
 ## Selecting multiple elements
-We now want to select the `carousle` class and the `ul` `li` elements and give them some CSS property's.
+We now want to select the `carousle` class and the `ul` `li` elements and give them some CSS property's. To achieve selecting multiple elements we need to use the `>` symbol which selects the direct descendant elements from where you wish to specify selecting. In this case we are selecting from `ul` to `li`
 
 ```css
 .carousle > ul > li{
@@ -153,7 +143,7 @@ We now want to select the `carousle` class and the `ul` `li` elements and give t
 
 We are floating left because we want all of our images be hidden on the left inside the container.
 
-# jQuery Functionality Fun!
+# jQuery Functionality
 
 Using jQuery is going to enable our carousel to slide back and forth when a user clicks on the **Next** and **Prev** buttons!
 
@@ -264,15 +254,15 @@ It would be wise to use a variable name that represents a number. We can set the
 ## Second if statement
 
 ### Conditions
-The first thing we need to do is in our second `if` statement is access the `image_` class. In the first condition we want to check the number of arguments `each()` method is receiving is greater that `0` which will evaluate to a boolean (true or false).
+In the first condition we want to check if the number of arguments our`image_` is receiving is greater than the number of `0`.
 
-In the second condition we want to check if `image_ + (number + 1)` is `true`. If both our conditions evaluate to `true` then our `if` statement will execute the statement within.
+In the second condition we want to see if (number + 1)` is `truthy`. If both our conditions evaluate to `true` then our second `if` statement will execute it's statement.
 
 ### Statement
-The statement in our second `if` is going to assign the class of `next` to the variable `number` and add `number` by `1` each time the loop iterates.
+The statement in our second `if` is going to assign the class of `next` to the variable `number` and add `number` by `1` each time the loop iterates. This allows are images to move on by one each time next is clicked.
 
 ### Else
-If our `if` statements where to fail then we need  statement that will be executed in place of them failing. This is where we use the `else` statement. Inside our `else` statement we want to execute the following, `next` is assigned to `0`
+If our `if` statements where to fail then we need statement that will be executed in place of them failing. This is where we use the `else` statement. Inside our `else` statement we want to execute the following, `next` is assigned to `0`
 
 ```javascript
 $(document).ready(function(){
@@ -281,14 +271,14 @@ $(document).ready(function(){
         // selecting `ul` elements and there direct descendants `li`
         //  using the each method to iterate over DOM
         $('ul > li').each(function (index, element) {
-            //  if `element` hasClass('on') then us
+            //  if `element` hasClass('on') then
             if ($(element).hasClass('on')) {
-                // the number variable to access the `element` in the data-image attribute
+                // use the number variable to access the `element` in the data-image attribute
                 var number = $(element).data('image');
             // first condition
-            // if number of arguments is greater than 0 is`true`
+            // if `image_`s number of arguments is greater than 0 is`true`
             // second condition
-            // if `image_` + (number + 1) is `true` then
+            // if  (number + 1) is `true` then
             if ($('image_' + (number + 1).length > 0)){
                 // next is assigned to number
                 // add number by `1` each time we iterate
@@ -303,16 +293,14 @@ $(document).ready(function(){
 });
 ```
 # Take a breather!
-The logic part in our code is by far the most tricky. I struggled to figure out how this worked. Seriously take your time to digest this. It's not easy stuff.
-
-Be proud of your self for spending time on something that is difficult. You are going to get this..It's just a matter of time :)
+The logic part in our code is by far the most tricky. In the beginning I struggled to figure out how this worked. Take your time to digest this and be proud of your self for spending time on something that is difficult.
 
 During my breather I took a few minutes to design a simple illustration on how code logic above is working. Take a look!
 
 ![Alt Text](http://s21.postimg.org/fw2wzl6on/Understanding_Logic.jpg)
 
 # Understanding Asynchronous and Synchronous
-I think it's highly use full for us to understand how asynchronous and synchronous execution work. If we grasp this idea then the next section of code will be much easier to understand. So I have gone into some detail to explain how
+I think it's highly use full for us to understand how asynchronous and synchronous execution work. If we grasp this idea then the next section of code will be much easier to understand. So I have gone into some detail to explain how this process works.
 
 ## Asynchronous def
 An Asynchronous operation means that a process operates independently of other processes.
@@ -321,8 +309,6 @@ An Asynchronous operation means that a process operates independently of other p
 > When you execute something asynchronously you can move onto another task before it finishes.
 
 Here is a visual representation I created of what an asynchronous execution looks like.
-
-If we look at this like a line then it will make a lot of sense.
 
 * `A` is first in line and is given a task to do. When `A` receives his task he decides to go work on it in the background and step out of line for a minute. So the line then moves onto `B`.
 
@@ -400,7 +386,7 @@ Once we have added our `promise()` we then need to add the the `done()` method. 
 
 ```javascript
 done(function(){
-    // do something
+    // find something, do something
     });
 ```
 
@@ -429,12 +415,12 @@ $(document).ready(function(){
 });
 
 ```
-## Light switch
+## On and Off classes
 The two CSS classes bellow each have `on` and `off` classes. When these classes are triggered `on` and `off` the the images perform a transition animation.
 
 Think of it like a light switch...
 
-Removing the class of `on` and adding the class of `off` will communicate to our css that we want to interchange the class of `on` to `off` that then triggers the animation between images.
+Removing the class of `on` and adding the class of `off` will communicate to our css that we want to interchange the class of `on` to `off` that then triggers the animation property's we set in the class.
 
 ```css
 /*Turn Off*/
@@ -454,13 +440,11 @@ In our HTML we have individual `li` classes and each has a class name `on image_
 
 The above code is going to switch out our classes in the CSS which will trigger the animations but it's not going to be effective if it can't find each list item or image inside of the DOM, so at this point the code above is just adding and removing classes from our css but not really doing anything to our actual images therefore we won't see any effect when we click the next link.
 
-So we need to find our list items, images and the next class so we can update the DOM when a new image comes into view. We want the DOM to reflect each image change by switching out the `li` class to `on` when an image comes into view and `off` when the image is out of view.
+So we need to find our list items, images and the next class so we can update the DOM when a new image comes into view. We want the DOM to reflect the class change from `off` to `on` when a new image comes into view.
 
 `$('li. image_' + next )` Notice how I don't search for `off`  or `on` but instead I just look for `li` elements and the class of `image_`  
 
 I also don't give `image_` a number to start with. This is because we want to always start cycling at the index of `0`
-
-Once we have found all the above we remove the class of `off` from the `li` when an image is in view.
 
 ```javascript
 // remove the class of `off` on `li` element that is currently displaying the image.
@@ -503,7 +487,7 @@ $(document).ready(function(){
 ```
 ## CSS animation!
 
-Creating the animation between images in CSS. There are a few approaches to wether to use jQuery or CSS for animation. In this example I have decided to use CSS to animate the images.
+Creating the animation between images in CSS is quite simple. There are a few approaches to wether to use jQuery or CSS for animation. In this example I have decided to use CSS to animate the images.
 
 The GPU is highly optimized for tasks like moving pixels around and applying transform matrices and opacity, so modern browsers try to offload those tasks from the CPU to the GPU.
 
@@ -531,4 +515,56 @@ We are changing out the opacity through a transition animation.
     -web-kit-transition: opacity 0.2 linear;
 
 }
+```
+# Previous image
+So we can move forward thats awesome but what about backwards? Well we could def use a previous button! How might that work?
+
+If we click on the previous link then we want our image to cycle backwards.
+To achieve this we need to set up a previous link and  when it is clicked we iterate through each image backwards till we get to the first image in the series.
+
+Our jQuery code is going to be almost be a mirror image of what we have above but there's two small details that we need to change. I'll give you a hint for the first one, being the we are using a new link and we are giving it a class name of `prev` then that means that we need to access the class of `prev` and create a brand new event for it.
+
+Now try you'r hand at it.
+
+## Solution
+
+If you were able to get to the solution then that's great! If not then just follow my steps here and practice again and again till it sinks in.
+
+So we first need to create an entirely new event on the `prev` class. Then we need to create our loop. Once these two things have been taken care of we can then move onto the logic.  
+
+Inside of our first `if` statement we want to see `if` `element` has a class of `on`.
+
+Inside the second `if` statement is where the second change occurs. Instead of adding `number` + `1` we need to minus `number` - `1` this allows us to move backwards through out each image. The rest of our code is exactly the same as our pervious code.
+
+```javascript
+// finding the `prev` class
+$('.prev').on('click',function(){
+    // loop through each element
+    $('carousle > ul > li').each(function(index,element){
+        // if element has class of on then
+        if ($(element).hasClass('on')){
+            // access the element and find the data attribute of `image`
+            var number = $(element).data('image');
+            // if image_ arguments is greater than 0
+            // if number - 1 is `truthy` then
+            if($('image_' + (number - 1)).length > 0){
+                // prev is assigned to next - 1
+                prev = number - 1;
+            }
+            else {
+                // if above expressions fail
+                // prev is assigned to 0
+                prev = 0;
+            }
+       }
+    // promise
+    }).promise().done(function(){
+        // remove class of `on` add class of `off`
+        $('.carousle > ul > li').removeClass('on').addClass('off');
+        // update `li` elements when we remove class of `off`
+        // and add class of `on`
+        $('li.image_').removeClass('off').addClass('on');
+    });
+});
+
 ```
