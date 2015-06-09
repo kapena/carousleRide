@@ -240,7 +240,7 @@ It would be wise to use a variable name that represents a number.
 ### Conditions
 In the first condition we want to check if the number of arguments our`image_` is receiving is greater than the number of `0`. If we get a `truthy` value then our second condition will we processed.
 
-In the second condition we want to see if (number + 1)` is `truthy`. If both our conditions evaluate to `truthy` then our second `if` statement will execute it's statement.
+In the second condition we want to see if `(number + 1)` is `truthy`. If both our conditions evaluate to `truthy` then our second `if` statement will execute it's statement.
 
 ### Statement
 The statement in our second `if` is going to assign the class of `next` to the variable `number` and add `number` by `1` each time the loop iterates. This allows are images to move on by one each time next is clicked.
