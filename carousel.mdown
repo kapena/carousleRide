@@ -72,7 +72,7 @@ Setting our `wrapper` to `block` makes it a block-level container box. A block-l
 
 If you want to learn more on this topic then take a read through [Visual formatting model](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Visual_formatting_model) at MDN
 
-Block-level boxes participate in the[block formatting context](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context). This means that each block-level element generates at least one block-level box which is called the *principal block-level box*
+Block-level boxes participate in the [block formatting context](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context). This means that each block-level element generates at least one block-level box which is called the *principal block-level box*
 
 ```css
 .wrapper{
@@ -263,7 +263,7 @@ $(document).ready(function(){
             // if `image_`s number of arguments is greater than 0 is`truthy`
             // second condition
             // if  (number + 1) is `truthy` then
-            if ($('image_' + (number + 1).length > 0)){
+            if ($('.image_' + (number + 1).length > 0)){
                 // next is assigned to number
                 // add number by `1` each time we iterate
                 next = number + 1;
@@ -380,11 +380,11 @@ $(document).ready(function(){
     $('next').on('click',function(){
         // loop
         $('ul > li').each(function(element, index)
-        // logic
+        // first if statement
         if ($('element').hasClass('on')){
             var number = $('element').data('image');
-
-        if ($('image_' + (number + 1)).length > 0){
+        // second if statement
+        if ($('.image_' + (number + 1)).length > 0){
             next = number + 1;
         }
         else {
@@ -416,7 +416,7 @@ Removing the class of `on` and adding the class of `off` will communicate to our
 Removing the class of `on` then adding the class of `off`
 ```javascript
 // remove class of `on` add class of `off`
- $('carousle > ul > li').removeClass('on').addClass('off');
+ $('.carousle > ul > li').removeClass('on').addClass('off');
 ```
 
 ## Removing off and adding on
@@ -449,7 +449,7 @@ $(document).ready(function(){
                 var number = $(element).data('image');
                 // if number of arguments is less than 0 and
                 // number - 1 is truthy then
-            if ($('image_' + (number + 1).length > 0)){
+            if ($('.image_' + (number + 1).length > 0)){
                 // next is assigned to number
                 // add number by `1` each time we iterate
                 next = number + 1;
@@ -554,4 +554,4 @@ $('.prev').on('click',function(){
 
 ```
 # Good for you
-If you have followed this post and liked it then share it for others to learn from to. Thank you for reading :) 
+If you have followed this post and liked it then share it for others to learn from to. Thank you for reading :)
