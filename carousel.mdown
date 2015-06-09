@@ -447,8 +447,8 @@ $(document).ready(function(){
             if ($(element).hasClass('on')) {
                 // the number variable to access the `element` in the data-image attribute
                 var number = $(element).data('image');
-                // if number of arguments is less than 0 and
-                // number - 1 is truthy then
+                // if number of arguments is less than 0 is `truthy`
+                // if number - 1 is `truthy` then
             if ($('.image_' + (number + 1).length > 0)){
                 // next is assigned to number
                 // add number by `1` each time we iterate
